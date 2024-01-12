@@ -1,6 +1,8 @@
-﻿namespace ShoeStore.Models
+﻿using ShoeStore.Data;
+
+namespace ShoeStore.Models
 {
-    public class Model
+    public class Model : IEntity
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

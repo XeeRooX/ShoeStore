@@ -1,6 +1,8 @@
-﻿namespace ShoeStore.Models
+﻿using ShoeStore.Data;
+
+namespace ShoeStore.Models
 {
-    public class Size
+    public class Size : IEntity
     {
         public int Id { get; set; }
         public double Number { get; set; }
