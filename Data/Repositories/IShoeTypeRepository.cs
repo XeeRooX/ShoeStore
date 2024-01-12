@@ -1,6 +1,8 @@
-﻿namespace ShoeStore.Data.Repositories
+﻿using ShoeStore.Models;
+
+namespace ShoeStore.Data.Repositories
 {
-    public interface IShoeTypeRepository<T> where T : class, IEntity
+    public interface IShoeTypeRepository: IRepository<ShoeType>
     {
     }
 }

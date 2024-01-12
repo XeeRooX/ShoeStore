@@ -20,6 +20,7 @@ namespace ShoeStore.Data.EFCore
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            InitializationDb.Initialize(modelBuilder);
         }
 
     }

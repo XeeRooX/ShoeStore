@@ -1,6 +1,8 @@
-﻿namespace ShoeStore.Data.Repositories
+﻿using ShoeStore.Models;
+
+namespace ShoeStore.Data.Repositories
 {
-    public interface IColorRepository<T> where T : class, IEntity
+    public interface IColorRepository: IRepository<Color>
     {
     }
 }

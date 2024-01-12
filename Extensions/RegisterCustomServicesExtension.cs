@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using ShoeStore.Data.EFCore;
+using ShoeStore.Data.Repositories;
 
 namespace ShoeStore.Extensions
 {
@@ -12,6 +13,7 @@ namespace ShoeStore.Extensions
             services.AddMediatR(conf => conf.RegisterServicesFromAssembly(typeof(Program).Assembly));
             services.AddAutoMapper(typeof(Program));
 
+            services.AddScoped<IShoeRepository, ShoeRepository>();
         }
     }
 }

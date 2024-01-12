@@ -1,6 +1,8 @@
-﻿namespace ShoeStore.Data.Repositories
+﻿using ShoeStore.Models;
+
+namespace ShoeStore.Data.Repositories
 {
-    public interface ICollectionTypeRepository<T> where T : class, IEntity
+    public interface ICollectionTypeRepository: IRepository<CollectionType>
     {
     }
 }

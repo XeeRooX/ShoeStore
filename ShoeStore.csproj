@@ -26,6 +26,7 @@
 
   <ItemGroup>
     <Folder Include="DbData\" />
+    <Folder Include="Commands\" />
   </ItemGroup>
 
 </Project>
