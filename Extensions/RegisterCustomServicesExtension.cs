@@ -1,10 +1,17 @@
-﻿namespace ShoeStore.Extensions
+﻿using Microsoft.EntityFrameworkCore;
+using ShoeStore.Data.EFCore;
+
+namespace ShoeStore.Extensions
 {
     public static class RegisterCustomServicesExtension
     {
-        public static void RegisterCustomServices(this IServiceCollection services)
+        public static void RegisterCustomServices(this IServiceCollection services, IConfiguration config)
         {
-            
+            var connectionString = config.GetConnectionString("DefaultConnection");
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString));
+            services.AddMediatR(conf => conf.RegisterServicesFromAssembly(typeof(Program).Assembly));
+            services.AddAutoMapper(typeof(Program));
+
         }
     }
 }
