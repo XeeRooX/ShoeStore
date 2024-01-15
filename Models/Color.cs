@@ -2,7 +2,7 @@
 
 namespace ShoeStore.Models
 {
-    public class Color : IEntity
+    public class Color : IEntity, IDirectory
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

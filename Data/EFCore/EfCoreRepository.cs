@@ -45,6 +45,11 @@ namespace ShoeStore.Data.EFCore
             return (await _dbContext.Set<TEntity>().FindAsync(id))!;
         }
 
+        public bool IsExistsById(int id)
+        {
+            return _dbContext.Set<TEntity>().Find(id) != null;
+        }
+
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
