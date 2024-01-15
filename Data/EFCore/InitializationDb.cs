@@ -19,12 +19,36 @@ namespace ShoeStore.Data.EFCore
                 );
 
             var sizes = new List<Size>();
-            for ( int i = 16; i <= 55; i++ )
+            for (int i = 16; i <= 55; i++)
             {
-                sizes.Add(new Size() { Id = i - 15, Number = i});
+                sizes.Add(new Size() { Id = i - 15, Number = i });
             }
 
             builder.Entity<Size>().HasData(sizes);
+
+            
+            // Ниже не обязательные для добавления
+            builder.Entity<Color>().HasData(
+                new Color() { Id = 1, Name = "черный" },
+                new Color() { Id = 2, Name = "белый" }
+                );
+
+            builder.Entity<Brand>().HasData(
+                new Brand() { Id = 1, Name = "Adidas" },
+                new Brand() { Id = 2, Name = "Reebok" }
+                );
+
+            builder.Entity<Model>().HasData(
+                new Model() { Id = 1, Name = "AdidasModel1", BrandId = 1 },
+                new Model() { Id = 2, Name = "AdidasModel2", BrandId = 1 },
+                new Model() { Id = 3, Name = "ReebokModel1", BrandId = 2 },
+                new Model() { Id = 4, Name = "ReebokModel2", BrandId = 2 }
+                );
+
+            builder.Entity<ShoeType>().HasData(
+                new ShoeType() { Id = 1, Name = "кроссовки" },
+                new ShoeType() { Id = 2, Name = "ботинки" }
+                );
         }
     }
 }

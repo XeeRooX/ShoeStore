@@ -6,7 +6,7 @@ using ShoeStore.Queries;
 
 namespace ShoeStore.Handlers
 {
-    public class GetAllShoesHandler : IRequestHandler<GetAllShoesQuery, IEnumerable<GetShoeFullDto>>
+    public class GetAllShoesHandler : IRequestHandler<GetAllShoesQuery, IEnumerable<GetShoesFullDto>>
     {
         private readonly IShoeRepository _shoeRepository;
         private readonly IMapper _mapper;
@@ -15,10 +15,10 @@ namespace ShoeStore.Handlers
             _shoeRepository = shoeRepository;
             _mapper = mapper;
         }
-        public async Task<IEnumerable<GetShoeFullDto>> Handle(GetAllShoesQuery request, CancellationToken cancellationToken)
+        public async Task<IEnumerable<GetShoesFullDto>> Handle(GetAllShoesQuery request, CancellationToken cancellationToken)
         {
-            var shoes = await _shoeRepository.GetAllAsync();
-            var result = _mapper.Map<IEnumerable<GetShoeFullDto>>(shoes);
+            var shoes = await _shoeRepository.GetAllIncludedAsync();
+            var result = _mapper.Map<IEnumerable<GetShoesFullDto>>(shoes);
             return result;
         }
     }

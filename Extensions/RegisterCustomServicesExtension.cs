@@ -14,6 +14,7 @@ namespace ShoeStore.Extensions
             services.AddAutoMapper(typeof(Program));
 
             services.AddScoped<IShoeRepository, ShoeRepository>();
+            services.AddScoped<IModelRepository, ModelRepository>();
         }
     }
 }

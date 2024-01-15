@@ -2,7 +2,7 @@
 
 namespace ShoeStore.Dtos.Shoe
 {
-    public class GetShoeFullDto
+    public class GetShoesFullDto
     {
         public int Id { get; set; }
         public int ColorId { get; set; }
