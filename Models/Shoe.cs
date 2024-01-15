@@ -5,7 +5,7 @@ namespace ShoeStore.Models
     public class Shoe : IEntity
     {
         public int Id { get; set; }
-
+        public double Price { get; set; }
         public int ColorId { get; set; }
         public Color Color { get; set; } = null!;
         public int ModelId { get; set; }

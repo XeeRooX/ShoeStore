@@ -5,6 +5,7 @@ namespace ShoeStore.Dtos.Shoe
     public class GetShoesFullDto
     {
         public int Id { get; set; }
+        public double Price { get; set; }
         public int ColorId { get; set; }
         public string Color { get; set; } = null!;
         public int ModelId { get; set; }

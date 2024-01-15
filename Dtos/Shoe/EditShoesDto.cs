@@ -3,6 +3,7 @@
     public class EditShoesDto
     {
         public int Id { get; set; }
+        public double Price { get; set; }
         public int ColorId { get; set; }
         public int ModelId { get; set; }
         public int SeasonId { get; set; }

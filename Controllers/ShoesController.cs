@@ -29,6 +29,13 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [HttpPost("filter")]
+        public async Task<IActionResult> Filter(FilterShoesDto input)
+        {
+            var result = await _mediator.Send(new FilterShoesQuery(input));
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         public async Task<IActionResult> Add(AddShoesDto input)
         {
