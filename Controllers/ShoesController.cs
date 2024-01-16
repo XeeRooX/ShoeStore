@@ -1,9 +1,9 @@
 ﻿using MediatR;
 using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.AspNetCore.Mvc;
-using ShoeStore.Commands;
+using ShoeStore.Commands.Shoes;
 using ShoeStore.Dtos.Shoe;
-using ShoeStore.Queries;
+using ShoeStore.Queries.Shoes;
 
 namespace ShoeStore.Controllers
 {

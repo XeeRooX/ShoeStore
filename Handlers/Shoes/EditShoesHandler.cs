@@ -1,18 +1,18 @@
 ﻿using AutoMapper;
 using MediatR;
-using ShoeStore.Commands;
+using ShoeStore.Commands.Shoes;
 using ShoeStore.Data.Repositories;
 using ShoeStore.Dtos.Shoe;
 using ShoeStore.Models;
 
-namespace ShoeStore.Handlers
+namespace ShoeStore.Handlers.Shoes
 {
     public class EditShoesHandler : IRequestHandler<EditShoesCommand, GetShoesFullDto>
     {
         private readonly IShoeRepository _shoeRepository;
         private readonly IMapper _mapper;
 
-        public EditShoesHandler(IShoeRepository shoeRepository, IMapper mapper) 
+        public EditShoesHandler(IShoeRepository shoeRepository, IMapper mapper)
         {
             _shoeRepository = shoeRepository;
             _mapper = mapper;

@@ -1,8 +1,6 @@
-﻿using ShoeStore.Data;
-
-namespace ShoeStore.Models
+﻿namespace ShoeStore.Dtos.Color
 {
-    public class Brand : IEntity
+    public class GetColorOutDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = null!;

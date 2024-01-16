@@ -2,9 +2,9 @@
 using MediatR;
 using ShoeStore.Data.Repositories;
 using ShoeStore.Dtos.Shoe;
-using ShoeStore.Queries;
+using ShoeStore.Queries.Shoes;
 
-namespace ShoeStore.Handlers
+namespace ShoeStore.Handlers.Shoes
 {
     public class FilterShoesHandler : IRequestHandler<FilterShoesQuery, IEnumerable<GetShoesFullDto>>
     {

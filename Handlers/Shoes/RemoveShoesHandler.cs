@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
 using MediatR;
-using ShoeStore.Commands;
+using ShoeStore.Commands.Shoes;
 using ShoeStore.Data.Repositories;
 using ShoeStore.Dtos.Shoe;
 
-namespace ShoeStore.Handlers
+namespace ShoeStore.Handlers.Shoes
 {
     public class RemoveShoesHandler : IRequestHandler<RemoveShoesCommand, GetShoesFullDto>
     {

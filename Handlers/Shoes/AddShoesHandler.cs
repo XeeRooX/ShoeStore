@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using MediatR;
-using ShoeStore.Commands;
+using ShoeStore.Commands.Shoes;
 using ShoeStore.Data.Repositories;
 using ShoeStore.Dtos.Shoe;
 using ShoeStore.Models;
 //using ShoeStore.Models;
 
 
-namespace ShoeStore.Handlers
+namespace ShoeStore.Handlers.Shoes
 {
     public class AddShoesHandler : IRequestHandler<AddShoesCommand, GetShoesFullDto>
     {
