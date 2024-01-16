@@ -52,7 +52,15 @@ namespace ShoeStore.Data.EFCore
 
         public async Task<TEntity> UpdateAsync(TEntity entity)
         {
-            _dbContext.Entry(entity).State = EntityState.Modified;
+            var existingEntity = _dbContext.Set<TEntity>().Local.FirstOrDefault(x => x.Id == entity.Id);
+            if (existingEntity != null)
+            {
+                _dbContext.Entry(entity).State = EntityState.Detached;
+            }
+            else
+            {
+                _dbContext.Entry(entity).State = EntityState.Modified;
+            }
             await _dbContext.SaveChangesAsync();
             return entity;
         }
