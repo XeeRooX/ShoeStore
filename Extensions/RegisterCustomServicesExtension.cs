@@ -10,10 +10,20 @@ namespace ShoeStore.Extensions
 {
     public static class RegisterCustomServicesExtension
     {
-        public static void RegisterCustomServices(this IServiceCollection services, IConfiguration config)
+        public static void RegisterCustomServices(this IServiceCollection services, WebApplicationBuilder builder)
         {
+            var config = builder.Configuration;
+
             var connectionString = config.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString),contextLifetime: ServiceLifetime.Scoped);
+            if (builder.Environment.IsDevelopment())
+            {
+                services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString), contextLifetime: ServiceLifetime.Scoped);
+            }
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(connectionString), contextLifetime: ServiceLifetime.Scoped);
+            if (builder.Environment.IsProduction())
+            {
+                services.AddDbContext<ApplicationDbContext>(opt => opt.UseNpgsql(connectionString), contextLifetime: ServiceLifetime.Scoped);
+            }
             services.AddMediatR(conf => conf.RegisterServicesFromAssembly(typeof(Program).Assembly));
             services.AddAutoMapper(typeof(Program));
             services.AddValidatorsFromAssemblyContaining<GetShoesValidator>();

@@ -1,3 +1,4 @@
+using ShoeStore.Data.EFCore;
 using ShoeStore.Extensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -7,15 +8,15 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-builder.Services.RegisterCustomServices(builder.Configuration);
+builder.Services.RegisterCustomServices(builder);
 
 var app = builder.Build();
 
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
+InitializationDb.Migrate(app);
+
+app.UseSwagger();
+
+app.UseSwaggerUI();
 
 app.UseAuthorization();
 

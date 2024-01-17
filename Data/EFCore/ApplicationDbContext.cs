@@ -14,13 +14,16 @@ namespace ShoeStore.Data.EFCore
         public DbSet<ShoeType> ShoeTypes { get; set; } = null!;
         public DbSet<Size> Sizes { get; set; } = null!;
 
-        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
-        {   
+        private readonly IConfiguration _configuration;
+
+        public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options, IConfiguration configuration) : base(options)
+        {
+            _configuration = configuration;
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            InitializationDb.Initialize(modelBuilder);
+            InitializationDb.Initialize(modelBuilder, _configuration);
         }
 
     }
