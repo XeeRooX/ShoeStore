@@ -13,14 +13,14 @@ namespace ShoeStore.Extensions
         public static void RegisterCustomServices(this IServiceCollection services, IConfiguration config)
         {
             var connectionString = config.GetConnectionString("DefaultConnection");
-            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString));
+            services.AddDbContext<ApplicationDbContext>(opt => opt.UseSqlite(connectionString),contextLifetime: ServiceLifetime.Scoped);
             services.AddMediatR(conf => conf.RegisterServicesFromAssembly(typeof(Program).Assembly));
             services.AddAutoMapper(typeof(Program));
             services.AddValidatorsFromAssemblyContaining<GetShoesValidator>();
             services.AddFluentValidationAutoValidation();
             services.AddFluentValidationClientsideAdapters();
 
-
+       
             services.AddScoped<IShoeRepository, ShoeRepository>();
             services.AddScoped<IModelRepository, ModelRepository>();
             services.AddScoped<IBrandRepository, BrandRepository>();

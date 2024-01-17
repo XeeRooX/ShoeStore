@@ -1,4 +1,5 @@
-﻿using ShoeStore.Data.Repositories;
+﻿using Microsoft.EntityFrameworkCore;
+using ShoeStore.Data.Repositories;
 using ShoeStore.Models;
 
 namespace ShoeStore.Data.EFCore
@@ -9,6 +10,26 @@ namespace ShoeStore.Data.EFCore
         public ModelRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
             _dbContext = dbContext;
+        }
+
+        public async Task<Model> DeleteIncludedAsync(int id)
+        {
+            var model = (await _dbContext.Models.Include(m => m.Brand).FirstOrDefaultAsync(m => m.Id == id))!;
+            _dbContext.Models.Remove(model);
+            await _dbContext.SaveChangesAsync();
+            return model;
+        }
+
+        public async Task<IEnumerable<Model>> GetAllIncludedAsync()
+        {
+            var result = await _dbContext.Models.Include(m => m.Brand).ToListAsync();
+            return result;
+        }
+
+        public async Task<Model> GetIncludedAsync(int id)
+        {
+            var result = (await _dbContext.Models.Include(m => m.Brand).FirstOrDefaultAsync(m => m.Id == id))!;
+            return result;
         }
 
         public bool IsUniqueName(string name)

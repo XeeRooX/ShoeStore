@@ -2,7 +2,7 @@
 
 namespace ShoeStore.Data.EFCore
 {
-    public abstract class EfCoreRepository<TEntity, TContext> : IRepository<TEntity> 
+    public abstract class EfCoreRepository<TEntity, TContext> : IRepository<TEntity>
         where TEntity : class, IEntity
         where TContext : DbContext
     {
@@ -27,7 +27,7 @@ namespace ShoeStore.Data.EFCore
             _dbContext.Remove(entity);
             await _dbContext.SaveChangesAsync();
 
-            return entity;  
+            return entity;
         }
 
         public TEntity Get(int id)
@@ -55,12 +55,10 @@ namespace ShoeStore.Data.EFCore
             var existingEntity = _dbContext.Set<TEntity>().Local.FirstOrDefault(x => x.Id == entity.Id);
             if (existingEntity != null)
             {
-                _dbContext.Entry(entity).State = EntityState.Detached;
+                _dbContext.Set<TEntity>().Local.Clear();
             }
-            else
-            {
-                _dbContext.Entry(entity).State = EntityState.Modified;
-            }
+            _dbContext.Entry(entity).State = EntityState.Modified;
+
             await _dbContext.SaveChangesAsync();
             return entity;
         }
