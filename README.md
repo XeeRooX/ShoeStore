@@ -15,8 +15,11 @@ http://localhost:5000/swagger
 ```
 ## Описание эндпоинтов
 Все эндпоинты описаны в документации Swagger UI, доступной по адресу http://localhost:5000/swagger
+
 ![image](https://github.com/XeeRooX/ShoeStore/assets/91987012/93cff13b-64b9-4707-b884-db401f8fd3ff)
+
 Здесь же их можно протестировать.
+
 ![image](https://github.com/XeeRooX/ShoeStore/assets/91987012/c9323f7f-df87-419f-a6b3-18baca471484)
 ## Конфигурация
 Вся основная конфигурация хранится в переменных окружения, которые можно назначить в файле docker-compose.yml в блоке environment. Все переменные, описанные в этом блоке, стандартные кроме нескольких:
