@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using ShoeStore.Commands.Color;
 using ShoeStore.Dtos.Color;
 using ShoeStore.Queries.Colors;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoeStore.Controllers
 {
+    [SwaggerTag("Эндпоинты для ведения информации о цветах обуви")]
     public class ColorController : ApiBaseController
     {
         private readonly IMediator _mediator;
@@ -14,6 +16,7 @@ namespace ShoeStore.Controllers
             _mediator = mediator;
         }
 
+        [SwaggerOperation(Summary = "Получить все цвета")]
         [HttpGet("all")]
         public async Task<IActionResult> All()
         {
@@ -21,6 +24,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить цвет по id")]
         [HttpPost("get")]
         public async Task<IActionResult> Get(GetColorInDto input)
         {
@@ -28,6 +32,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Добавить цвет")]
         [HttpPost("add")]
         public async Task<IActionResult> Add(AddColorDto input)
         {
@@ -35,6 +40,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Редактировать цвет")]
         [HttpPut("edit")]
         public async Task<IActionResult> Edit(EditColorDto input)
         {
@@ -42,6 +48,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Удалить цвет")]
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(GetColorInDto input)
         {

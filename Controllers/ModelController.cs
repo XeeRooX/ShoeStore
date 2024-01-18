@@ -3,9 +3,12 @@ using Microsoft.AspNetCore.Mvc;
 using ShoeStore.Commands.Model;
 using ShoeStore.Dtos.Model;
 using ShoeStore.Queries.Model;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoeStore.Controllers
 {
+    [SwaggerTag("Эндпоинты для ведения информации о моделях обуви")]
+
     public class ModelController : ApiBaseController
     {
         private readonly IMediator _mediator;
@@ -14,6 +17,7 @@ namespace ShoeStore.Controllers
             _mediator = mediator;
         }
 
+        [SwaggerOperation(Summary = "Получить все модели")]
         [HttpGet("all")]
         public async Task<IActionResult> All()
         {
@@ -21,6 +25,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить модель по id")]
         [HttpPost("get")]
         public async Task<IActionResult> Get(GetModelInDto input)
         {
@@ -28,6 +33,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Добавить модель")]
         [HttpPost("add")]
         public async Task<IActionResult> Add(AddModelDto input)
         {
@@ -35,6 +41,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Редактировать модель")]
         [HttpPut("edit")]
         public async Task<IActionResult> Edit(EditModelDto input)
         {
@@ -42,6 +49,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Удалить модель")]
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(GetModelInDto input)
         {

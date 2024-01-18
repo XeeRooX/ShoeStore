@@ -3,9 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 using ShoeStore.Commands.ShoesType;
 using ShoeStore.Dtos.ShoesType;
 using ShoeStore.Queries.ShoesType;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoeStore.Controllers
 {
+    [SwaggerTag("Эндпоинты для ведения информации о разновидностях обуви")]
     public class ShoesTypeController : ApiBaseController
     {
         private readonly IMediator _mediator;
@@ -14,6 +16,7 @@ namespace ShoeStore.Controllers
             _mediator = mediator;
         }
 
+        [SwaggerOperation(Summary = "Получить все типы")]
         [HttpGet("all")]
         public async Task<IActionResult> All()
         {
@@ -21,6 +24,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить тип по id")]
         [HttpPost("get")]
         public async Task<IActionResult> Get(GetShoesTypeInDto input)
         {
@@ -28,6 +32,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Добавтиь тип")]
         [HttpPost("add")]
         public async Task<IActionResult> Add(AddShoesTypeDto input)
         {
@@ -35,6 +40,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Редактировать тип")]
         [HttpPut("edit")]
         public async Task<IActionResult> Edit(EditShoesTypeDto input)
         {
@@ -42,6 +48,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Удалить тип")]
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(GetShoesTypeInDto input)
         {

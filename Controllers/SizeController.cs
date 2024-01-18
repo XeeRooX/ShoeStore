@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoeStore.Dtos.Size;
 using ShoeStore.Queries.Size;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoeStore.Controllers
 {
+    [SwaggerTag("Эндпоинты для получения информации о размере обуви")]
     public class SizeController : ApiBaseController
     {
         private readonly IMediator _mediator;
@@ -13,6 +15,7 @@ namespace ShoeStore.Controllers
             _mediator = mediator;
         }
 
+        [SwaggerOperation(Summary = "Получить все размеры")]
         [HttpGet("all")]
         public async Task<IActionResult> All()
         {
@@ -20,6 +23,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить размер по id")]
         [HttpPost("get")]
         public async Task<IActionResult> Get(GetSizeInDto input)
         {

@@ -2,9 +2,11 @@
 using Microsoft.AspNetCore.Mvc;
 using ShoeStore.Dtos.CollectionType;
 using ShoeStore.Queries.CollectionType;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoeStore.Controllers
 {
+    [SwaggerTag("Эндпоинты для получения информации о типах коллекции")]
     public class CollectionTypeController : ApiBaseController
     {
         private readonly IMediator _mediator;
@@ -13,6 +15,7 @@ namespace ShoeStore.Controllers
             _mediator = mediator;
         }
 
+        [SwaggerOperation(Summary = "Получить все типы")]
         [HttpGet("all")]
         public async Task<IActionResult> All()
         {
@@ -20,6 +23,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить тип по id")]
         [HttpPost("get")]
         public async Task<IActionResult> Get(GetCollectionTypeInDto input)
         {

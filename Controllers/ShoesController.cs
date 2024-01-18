@@ -4,9 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using ShoeStore.Commands.Shoes;
 using ShoeStore.Dtos.Shoe;
 using ShoeStore.Queries.Shoes;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace ShoeStore.Controllers
 {
+    [SwaggerTag("Эндпоинты для ведения информации об обуви")]
     public class ShoesController : ApiBaseController
     {
         private readonly IMediator _mediator;
@@ -15,6 +17,7 @@ namespace ShoeStore.Controllers
             _mediator = mediator;
         }
 
+        [SwaggerOperation(Summary = "Получить всю обувь")]
         [HttpGet("all")]
         public async Task<IActionResult> All()
         {
@@ -22,6 +25,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить по id")]
         [HttpPost("get")]
         public async Task<IActionResult> Get(GetShoesDto input)
         {
@@ -29,6 +33,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Получить с использованием фильтров")]
         [HttpPost("filter")]
         public async Task<IActionResult> Filter(FilterShoesDto input)
         {
@@ -36,6 +41,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Добавить новую")]
         [HttpPost("add")]
         public async Task<IActionResult> Add(AddShoesDto input)
         {
@@ -43,6 +49,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Изменить информацию об обуви")]
         [HttpPut("edit")]
         public async Task<IActionResult> Edit(EditShoesDto input)
         {
@@ -50,6 +57,7 @@ namespace ShoeStore.Controllers
             return Ok(result);
         }
 
+        [SwaggerOperation(Summary = "Удалить информацию об обуви")]
         [HttpDelete("delete")]
         public async Task<IActionResult> Delete(GetShoesDto input)
         {
